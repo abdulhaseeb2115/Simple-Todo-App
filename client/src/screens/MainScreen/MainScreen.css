@@ -5,6 +5,19 @@
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 0;
-    backdrop-filter: blur(2px);
+    z-index: -1;
+    background-image: url("../../assets/bridge.jpg");
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: blur(2px) sepia(20%) brightness(0.7);
+}
+
+
+.Button {
+    box-shadow: inset 0px 2px 0px 0px rgba(255, 255, 255, 0.2), -1px 1px 6px 1px rgba(84, 74, 74, 0.5);
+}
+
+.List::-webkit-scrollbar {
+    display: none;
 }
