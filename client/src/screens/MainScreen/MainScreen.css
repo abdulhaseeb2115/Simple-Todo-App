@@ -1,5 +1,5 @@
 .MainScreen::before {
-    position: absolute;
+    position: fixed;
     content: '';
     height: 100%;
     width: 100%;
@@ -7,7 +7,7 @@
     left: 0;
     z-index: -1;
     background-image: url("../../assets/bridge.jpg");
-    background-position: top;
+    background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     filter: blur(2px) sepia(20%) brightness(0.7);
@@ -18,6 +18,6 @@
     box-shadow: inset 0px 2px 0px 0px rgba(255, 255, 255, 0.2), -1px 1px 6px 1px rgba(84, 74, 74, 0.5);
 }
 
-.List::-webkit-scrollbar {
+.List::-webkit-scrollbar, .Options::-webkit-scrollbar {
     display: none;
 }
