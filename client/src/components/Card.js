@@ -17,8 +17,11 @@ export default function Card({
 	const [isChecked, setIsChecked] = useState(false); // checkbox status
 	const [toggleSubMenu, setToggleSubMenu] = useState(false); // checkbox status
 
+	//
+	//
+
 	// handle task status update
-	const handleUpdate = async (id, updatedStatus) => {
+	async function handleUpdate(id, updatedStatus) {
 		setIsChecked(updatedStatus);
 		try {
 			const { data } = await api.updateItem(id, { status: updatedStatus });
@@ -30,10 +33,10 @@ export default function Card({
 			console.log(error);
 			alert("Checkbox error occured !");
 		}
-	};
+	}
 
 	// handle task delete
-	const handleDelete = async () => {
+	async function handleDelete() {
 		setToggleSubMenu(false);
 		try {
 			const { data } = await api.deleteItem(id);
@@ -45,7 +48,7 @@ export default function Card({
 			console.log(error);
 			alert("Delete error occured !");
 		}
-	};
+	}
 
 	// update checked
 	useEffect(() => {

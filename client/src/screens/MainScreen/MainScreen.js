@@ -18,31 +18,6 @@ export default function MainScreen() {
 	const [filteredList, setFilteredList] = useState([]); // filtered list
 	const [name, setName] = useState([]); // filtered list
 
-	// add item
-	const handleItemAdd = async () => {
-		if (name === "") {
-			return;
-		}
-
-		try {
-			const { data } = await api.addNewItem({ todo: name }); // data request
-			if (data?.success === true) {
-				refreshData();
-				setName("");
-				setToggleMenu(false);
-				console.log(data);
-			} else {
-				console.log(data);
-				alert("An error occured !!");
-				setToggleMenu(false);
-			}
-		} catch (error) {
-			console.log(error);
-			alert("An error occured !");
-			setToggleMenu(false);
-		}
-	};
-
 	// dropdown option change
 	const handleListChange = (type) => {
 		setListType(type);
@@ -75,7 +50,40 @@ export default function MainScreen() {
 		setFilteredList(filteredItems);
 	};
 
-	const refreshData = async () => {
+	//
+	//
+
+	// add item
+	async function handleItemAdd() {
+		if (name === "") {
+			return;
+		}
+
+		try {
+			const { data } = await api.addNewItem({ todo: name }); // data request
+			if (data?.success === true) {
+				refreshData();
+				setName("");
+				setToggleMenu(false);
+				console.log(data);
+			} else {
+				console.log(data);
+				alert("An error occured !!");
+				setToggleMenu(false);
+			}
+		} catch (error) {
+			console.log(error);
+			alert("An error occured !");
+			setToggleMenu(false);
+		}
+	}
+
+	// refresh data
+	async function refreshData() {
+		// remove all items once
+		setItemsList([]);
+		handleItemFilter(listType, []);
+
 		try {
 			const { data } = await api.getCompleteList(); // data request
 			if (data?.success === true) {
@@ -91,7 +99,7 @@ export default function MainScreen() {
 			console.log(error);
 			alert("An error occured !");
 		}
-	};
+	}
 
 	// fetch data
 	useEffect(() => {
