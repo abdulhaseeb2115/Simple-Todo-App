@@ -18,7 +18,10 @@ export default function MainScreen() {
 	const [filteredList, setFilteredList] = useState([]); // filtered list
 	const [name, setName] = useState([]); // filtered list
 
-	// dropdown option change
+	//
+	//
+
+	// dropdown change
 	const handleListChange = (type) => {
 		setListType(type);
 		setToggleDropdown(!toggleDropdown);
@@ -126,31 +129,16 @@ export default function MainScreen() {
 	}, []);
 
 	return (
-		<div
-			className="MainScreen 
-			h-screen w-full overflow-y-scroll 
-			relative p-20
-			"
-		>
+		<div className="MainScreen h-screen w-full overflow-y-scroll relative p-20">
 			{/* User Image */}
 			<img
 				src={person}
 				alt="person_image"
-				className="h-28 aspect-square 
-				rounded-full 
-				border-[3px] border-[#AB9A90] 
-				shadow-xl mx-auto"
+				className="h-28 aspect-square rounded-full border-[3px] border-[#AB9A90] shadow-xl mx-auto"
 			/>
 
 			{/* Main Button */}
-			<div
-				className="Button relative w-[370px] h-[70px] 
-				bg-[#A59C82] bg-opacity-90 
-				mt-5
-				rounded-lg border border-[#A59C82]
-				flex mx-auto
-				"
-			>
+			<div className="Button relative w-[370px] h-[70px] bg-[#A59C82] bg-opacity-90 mt-5 rounded-lg border border-[#A59C82] flex mx-auto ">
 				{/* menu btn*/}
 				<button
 					className="px-5 -mb-0.5 hover:opacity-50 duration-150 h-full"
@@ -164,10 +152,7 @@ export default function MainScreen() {
 
 				{/* dropdown btn */}
 				<button
-					className="w-full h-full flex 
-					items-center justify-between 
-					hover:opacity-80 duration-150 pr-5
-					"
+					className="w-full h-full flex items-center justify-between hover:opacity-80 duration-150 pr-5"
 					onClick={() => {
 						setToggleMenu(false);
 						setToggleDropdown(!toggleDropdown);
@@ -194,23 +179,12 @@ export default function MainScreen() {
 
 				{/* dropdown options */}
 				<div
-					className={`Options z-50
-					absolute top-full left-0 
-					w-[371px] h-0 overflow-auto
-					duration-300 delay-100 ease-in-out
-					mt-2 mx-auto -ml-0.5
-					${toggleDropdown === false ? "!h-0" : "!h-[200px]"}
-					`}
+					className={`Options z-50 absolute top-full left-0 w-[371px] h-0 overflow-auto duration-300 delay-100 ease-in-out mt-2 mx-auto -ml-0.5 
+					${toggleDropdown === false ? "!h-0" : "!h-[200px]"}`}
 				>
 					{/* today */}
 					<button
-						className="w-full h-[60px]
-						bg-[#A59C82] bg-opacity-[98%]
-						rounded-t-lg
-						text-left text-white
-						px-5
-						disabled:text-opacity-50
-						"
+						className="w-full h-[60px] bg-[#A59C82] bg-opacity-[98%]rounded-t-lg text-left text-white px-5 disabled:text-opacity-50"
 						disabled={listType === 0}
 						onClick={() => handleListChange(0)}
 					>
@@ -219,13 +193,7 @@ export default function MainScreen() {
 
 					{/* yesterday */}
 					<button
-						className="w-full h-[60px]
-						bg-[#A59C82] bg-opacity-[98%]
-						text-left text-white 
-						border-y border-[#766B57]
-						px-5
-						disabled:text-opacity-50
-						"
+						className="w-full h-[60px] bg-[#A59C82] bg-opacity-[98%] text-left text-white border-y border-[#766B57] px-5 disabled:text-opacity-50"
 						disabled={listType === 1}
 						onClick={() => handleListChange(1)}
 					>
@@ -234,14 +202,7 @@ export default function MainScreen() {
 
 					{/* past */}
 					<button
-						className="w-full h-[60px]
-						bg-[#A59C82] bg-opacity-[98%]
-						rounded-b-lg 
-						shadow-md
-						text-left text-white
-						px-5
-						disabled:text-opacity-50
-						"
+						className="w-full h-[60px] bg-[#A59C82] bg-opacity-[98%] rounded-b-lg shadow-md text-left text-white px-5 disabled:text-opacity-50"
 						disabled={listType === 2}
 						onClick={() => handleListChange(2)}
 					>
@@ -251,13 +212,8 @@ export default function MainScreen() {
 
 				{/* menu */}
 				<div
-					className={`Menu z-50
-					absolute top-full left-0 
-					w-[371px] h-0 overflow-hidden
-					bg-[#A59C82]
-					rounded-lg shadow shadow-[#555]
-					duration-300 delay-100 ease-in-out
-					mt-2 mx-auto -ml-0.5
+					className={`Menu z-50 absolute top-full left-0 w-[371px] h-0 overflow-hidden bg-[#A59C82] rounded-lg shadow shadow-[#555] duration-300 
+					delay-100 ease-in-out mt-2 mx-auto -ml-0.5
 					${toggleMenu === false ? "!h-0" : "!h-[120px]"}
 					`}
 				>
@@ -273,7 +229,7 @@ export default function MainScreen() {
 							e.preventDefault();
 							handleItemAdd();
 						}}
-						className="flex  justify-between mx-7"
+						className="flex justify-between mx-7"
 					>
 						{/* input */}
 						<input
@@ -281,17 +237,13 @@ export default function MainScreen() {
 							value={name}
 							placeholder="Item name"
 							onChange={(e) => setName(e.target.value)}
-							className="flex-1 px-4 mr-2 py-1 bg-[#766B57]
-							text-white focus:outline-none rounded-full"
+							className="flex-1 px-4 mr-2 py-1 bg-[#766B57] text-white focus:outline-none rounded-full"
 						/>
 
 						{/* butn */}
 						<button
 							type="submit"
-							className="bg-[#766B57] px-4 text-white rounded-full 
-							hover:opacity-70
-							disabled:opacity-70
-							"
+							className="bg-[#766B57] px-4 text-white rounded-full hover:opacity-70 disabled:opacity-70"
 							disabled={name === ""}
 						>
 							Submit
@@ -301,12 +253,7 @@ export default function MainScreen() {
 			</div>
 
 			{/* List */}
-			<div
-				className="List w-[370px] 
-				flex flex-col 
-				mx-auto mt-4
-				"
-			>
+			<div className="List w-[370px] flex flex-col mx-auto mt-4">
 				{/* filter items based on date */}
 				{filteredList.length > 0 &&
 					filteredList?.map(
