@@ -12,12 +12,38 @@ import * as Components from "../../components/all";
 export default function MainScreen() {
 	const [listType, setListType] = useState(0); // change list type
 	const [toggleDropdown, setToggleDropdown] = useState(false); // toggle dropdown
-	const [refresh, setRefresh] = useState(false); // refresh data
+	const [toggleMenu, setToggleMenu] = useState(false); // toggle menu
 
 	const [itemsList, setItemsList] = useState([]); // todo items list
 	const [filteredList, setFilteredList] = useState([]); // filtered list
+	const [name, setName] = useState([]); // filtered list
 
-	// handle dropdown options
+	// add item
+	const handleItemAdd = async () => {
+		if (name === "") {
+			return;
+		}
+
+		try {
+			const { data } = await api.addNewItem({ todo: name }); // data request
+			if (data?.success === true) {
+				refreshData();
+				setName("");
+				setToggleMenu(false);
+				console.log(data);
+			} else {
+				console.log(data);
+				alert("An error occured !!");
+				setToggleMenu(false);
+			}
+		} catch (error) {
+			console.log(error);
+			alert("An error occured !");
+			setToggleMenu(false);
+		}
+	};
+
+	// dropdown option change
 	const handleListChange = (type) => {
 		setListType(type);
 		setToggleDropdown(!toggleDropdown);
@@ -25,7 +51,7 @@ export default function MainScreen() {
 		handleItemFilter(type, itemsList);
 	};
 
-	// handle items filter
+	// filter items
 	const handleItemFilter = (type, array) => {
 		// yesterday date
 		var yesterday = new Date();
@@ -49,6 +75,24 @@ export default function MainScreen() {
 		setFilteredList(filteredItems);
 	};
 
+	const refreshData = async () => {
+		try {
+			const { data } = await api.getCompleteList(); // data request
+			if (data?.success === true) {
+				setItemsList(data?.items); // set full list
+				handleItemFilter(listType, data?.items); // set filtered list
+
+				console.log(data);
+			} else {
+				console.log(data);
+				alert("An error occured !!");
+			}
+		} catch (error) {
+			console.log(error);
+			alert("An error occured !");
+		}
+	};
+
 	// fetch data
 	useEffect(() => {
 		async function fetchData() {
@@ -56,6 +100,7 @@ export default function MainScreen() {
 				const { data } = await api.getCompleteList(); // data request
 				if (data?.success === true) {
 					setItemsList(data?.items); // set full list
+					setListType(0); // set list initially
 					handleItemFilter(0, data?.items); // set filtered list
 
 					console.log(data);
@@ -70,7 +115,7 @@ export default function MainScreen() {
 		}
 
 		fetchData();
-	}, [refresh]);
+	}, []);
 
 	return (
 		<div
@@ -101,7 +146,10 @@ export default function MainScreen() {
 				{/* menu btn*/}
 				<button
 					className="px-5 -mb-0.5 hover:opacity-50 duration-150 h-full"
-					onClick={() => {}}
+					onClick={() => {
+						setToggleDropdown(false);
+						setToggleMenu(!toggleMenu);
+					}}
 				>
 					<HiOutlineMenu size={25} color="#766B57" />
 				</button>
@@ -112,7 +160,10 @@ export default function MainScreen() {
 					items-center justify-between 
 					hover:opacity-80 duration-150 pr-5
 					"
-					onClick={() => setToggleDropdown(!toggleDropdown)}
+					onClick={() => {
+						setToggleMenu(false);
+						setToggleDropdown(!toggleDropdown);
+					}}
 				>
 					{/* selected option */}
 					<p className="text-white drop-shadow-md">
@@ -135,7 +186,7 @@ export default function MainScreen() {
 
 				{/* dropdown options */}
 				<div
-					className={`Options 
+					className={`Options z-50
 					absolute top-full left-0 
 					w-[371px] h-0 overflow-auto
 					duration-300 delay-100 ease-in-out
@@ -189,6 +240,56 @@ export default function MainScreen() {
 						Past to do list
 					</button>
 				</div>
+
+				{/* menu */}
+				<div
+					className={`Menu z-50
+					absolute top-full left-0 
+					w-[371px] h-0 overflow-hidden
+					bg-[#A59C82]
+					rounded-lg shadow shadow-[#555]
+					duration-300 delay-100 ease-in-out
+					mt-2 mx-auto -ml-0.5
+					${toggleMenu === false ? "!h-0" : "!h-[120px]"}
+					`}
+				>
+					{/* heading */}
+					<p className="text-[#766B57] text-center font-semibold my-4">
+						Add new item
+					</p>
+
+					{/* form */}
+					<form
+						action="#"
+						onSubmit={(e) => {
+							e.preventDefault();
+							handleItemAdd();
+						}}
+						className="flex  justify-between mx-7"
+					>
+						{/* input */}
+						<input
+							type="text"
+							value={name}
+							placeholder="Item name"
+							onChange={(e) => setName(e.target.value)}
+							className="flex-1 px-4 mr-2 py-1 bg-[#766B57]
+							text-white focus:outline-none rounded-full"
+						/>
+
+						{/* butn */}
+						<button
+							type="submit"
+							className="bg-[#766B57] px-4 text-white rounded-full 
+							hover:opacity-70
+							disabled:opacity-70
+							"
+							disabled={name === ""}
+						>
+							Submit
+						</button>
+					</form>
+				</div>
 			</div>
 
 			{/* List */}
@@ -211,6 +312,7 @@ export default function MainScreen() {
 								createdAt={createdAt}
 								first={index === 0}
 								last={index === filteredList.length - 1}
+								refresh={refreshData}
 							/>
 						)
 					)}
