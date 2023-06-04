@@ -38,5 +38,16 @@ To run the client and server applications locally, follow the steps below:
 
 The client-side application should be accessible at `http://localhost:3000`, and the server-side API should be running at `http://localhost:8080`.
 
-## Or
+### Run Using Docker
 Simply run command `docker-compose up` in the root folder.
+
+### Run Tests
+To run tests in 
+
+## 1. Client
+1. Run command `npx cypress open`.
+2. Select the test file in e2e folder.
+
+## 1. Server
+1. Run command `npm test`.
+
