@@ -61,7 +61,7 @@ export default function Card({
 
 	return (
 		<div
-			className={`relative h-[70px] w-full flex items-center bg-[#EDECE7] bg-opacity-95 pl-6 pr-3 border-y border-[#CBCAC6] 
+			className={`Card relative h-[70px] w-full flex items-center bg-[#EDECE7] bg-opacity-95 pl-6 pr-3 border-y border-[#CBCAC6] 
 			${first === true && "rounded-t-lg !border-t-0"} 
 			${last === true && "rounded-b-lg !border-b-0"}
 			`}

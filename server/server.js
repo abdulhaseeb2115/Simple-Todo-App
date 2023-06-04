@@ -5,34 +5,27 @@ import dotenv from "dotenv";
 // process.env file path
 dotenv.config({ path: "./config/config.env" });
 
-/**
- *  handle uncaught exceptions
- */
+////// handle uncaught exceptions
 process.on("uncaughtException", (err) => {
 	console.log("!! Error: " + err.message);
 	console.log("!! Shutting down the server due to Uncaught Exception");
 	process.exit(1);
 });
 
-/**
- *  DB Connection
- *  Server Connection
- */
-// connectDB("mongodb://mongo-cntnr/Cowlar-Test");
-connectDB("mongodb://127.0.0.1:27017/Cowlar-Test");
+////// DB Connection
+////// Server Connection
+connectDB("mongodb://mongo-cntnr/Cowlar-Test");
 export const server = app.listen(8080, () =>
 	console.log(`\n-> Server is running on http://localhost:8080`)
 );
 
-// RUN THE APP ON LOCAL HOST WITHOUT DOCKER
+////// RUN THE APP ON LOCAL HOST WITHOUT DOCKER
 // connectDB(process.env.MONGO_DB_URI); // DB connection
 // const server = app.listen(process.env.PORT, () =>
 // 	console.log(`\n-> Server is running on http://localhost:${process.env.PORT}`)
 // ); // server
 
-/**
- *  handle unhandeled promise rejection
- */
+////// handle unhandeled promise rejection
 process.on("unhandledRejection", (err) => {
 	console.log("!! Error: " + err.message);
 	console.log(

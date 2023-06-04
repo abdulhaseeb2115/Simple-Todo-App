@@ -134,14 +134,14 @@ export default function MainScreen() {
 			<img
 				src={person}
 				alt="person_image"
-				className="h-28 aspect-square rounded-full border-[3px] border-[#AB9A90] shadow-xl mx-auto"
+				className="User h-28 aspect-square rounded-full border-[3px] border-[#AB9A90] shadow-xl mx-auto"
 			/>
 
 			{/* Main Button */}
 			<div className="Button relative w-[370px] h-[70px] bg-[#A59C82] bg-opacity-90 mt-5 rounded-lg border border-[#A59C82] flex mx-auto ">
 				{/* menu btn*/}
 				<button
-					className="px-5 -mb-0.5 hover:opacity-50 duration-150 h-full"
+					className="MenuBtn px-5 -mb-0.5 hover:opacity-50 duration-150 h-full"
 					onClick={() => {
 						setToggleDropdown(false);
 						setToggleMenu(!toggleMenu);
@@ -152,7 +152,7 @@ export default function MainScreen() {
 
 				{/* dropdown btn */}
 				<button
-					className="w-full h-full flex items-center justify-between hover:opacity-80 duration-150 pr-5"
+					className="DropdownBtn w-full h-full flex items-center justify-between hover:opacity-80 duration-150 pr-5"
 					onClick={() => {
 						setToggleMenu(false);
 						setToggleDropdown(!toggleDropdown);
@@ -184,7 +184,7 @@ export default function MainScreen() {
 				>
 					{/* today */}
 					<button
-						className="w-full h-[60px] bg-[#A59C82] bg-opacity-[98%]rounded-t-lg text-left text-white px-5 disabled:text-opacity-50"
+						className="TodayTodo w-full h-[60px] bg-[#A59C82] bg-opacity-[98%]rounded-t-lg text-left text-white px-5 disabled:text-opacity-50"
 						disabled={listType === 0}
 						onClick={() => handleListChange(0)}
 					>
@@ -193,7 +193,7 @@ export default function MainScreen() {
 
 					{/* yesterday */}
 					<button
-						className="w-full h-[60px] bg-[#A59C82] bg-opacity-[98%] text-left text-white border-y border-[#766B57] px-5 disabled:text-opacity-50"
+						className="YesterdayTodo w-full h-[60px] bg-[#A59C82] bg-opacity-[98%] text-left text-white border-y border-[#766B57] px-5 disabled:text-opacity-50"
 						disabled={listType === 1}
 						onClick={() => handleListChange(1)}
 					>
@@ -202,7 +202,7 @@ export default function MainScreen() {
 
 					{/* past */}
 					<button
-						className="w-full h-[60px] bg-[#A59C82] bg-opacity-[98%] rounded-b-lg shadow-md text-left text-white px-5 disabled:text-opacity-50"
+						className="PastTodo w-full h-[60px] bg-[#A59C82] bg-opacity-[98%] rounded-b-lg shadow-md text-left text-white px-5 disabled:text-opacity-50"
 						disabled={listType === 2}
 						onClick={() => handleListChange(2)}
 					>
