@@ -37,3 +37,6 @@ To run the client and server applications locally, follow the steps below:
 8. Start the server-side application: `npm run dev`.
 
 The client-side application should be accessible at `http://localhost:3000`, and the server-side API should be running at `http://localhost:8080`.
+
+## Or
+Simply run command `docker-compose up` in the root folder.
