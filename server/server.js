@@ -18,8 +18,9 @@ process.on("uncaughtException", (err) => {
  *  DB Connection
  *  Server Connection
  */
-connectDB("mongodb://mongo-cntnr/Cowlar-Test");
-const server = app.listen(8080, () =>
+// connectDB("mongodb://mongo-cntnr/Cowlar-Test");
+connectDB("mongodb://127.0.0.1:27017/Cowlar-Test");
+export const server = app.listen(8080, () =>
 	console.log(`\n-> Server is running on http://localhost:8080`)
 );
 
