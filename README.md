@@ -42,12 +42,12 @@ The client-side application should be accessible at `http://localhost:3000`, and
 Simply run command `docker-compose up` in the root folder.
 
 ## Run Tests
-To run tests in 
+To run tests follow the steps below:
 
-## 1. Client
+### 1. Client
 1. Run command `npx cypress open`.
 2. Select the test file in e2e folder.
 
-## 1. Server
+### 2. Server
 1. Run command `npm test`.
 
