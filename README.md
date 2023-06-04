@@ -38,10 +38,10 @@ To run the client and server applications locally, follow the steps below:
 
 The client-side application should be accessible at `http://localhost:3000`, and the server-side API should be running at `http://localhost:8080`.
 
-### Run Using Docker
+## Run Using Docker
 Simply run command `docker-compose up` in the root folder.
 
-### Run Tests
+## Run Tests
 To run tests in 
 
 ## 1. Client
