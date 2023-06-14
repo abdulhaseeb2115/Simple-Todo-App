@@ -1,10 +1,12 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import * as Screens from "./screens/all";
+import { Toaster } from "react-hot-toast";
 
 function App() {
 	return (
 		<BrowserRouter>
+			<Toaster />
 			<Routes>
 				<Route path="/" element={<Screens.MainScreen />} />
 				<Route
