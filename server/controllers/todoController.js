@@ -4,7 +4,13 @@ import catchAsyncErrors from "../middleware/catchAsyncErrors.js";
 
 // GET ALL ITEMS
 export const getAllItems = catchAsyncErrors(async (req, res, next) => {
-	const allItems = await Todo.find();
+	const allItems = await Todo.aggregate([
+		{
+			$sort: {
+				createdAt: -1,
+			},
+		},
+	]);
 
 	res.status(200).json({
 		success: true,

@@ -1,39 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { HiOutlineMenu } from "react-icons/hi";
-import * as api from "../api/todoRequests";
+import { useNavigate } from "react-router-dom";
 
-export default function Menu({
-	setToggleDropdown,
-	setToggleMenu,
-	toggleMenu,
-	refreshData,
-}) {
-	const [name, setName] = useState([]); // filtered list
-
-	// add item
-	async function handleItemAdd() {
-		if (name === "") {
-			return;
-		}
-
-		try {
-			const { data } = await api.addNewItem({ todo: name }); // data request
-			if (data?.success === true) {
-				refreshData();
-				setName("");
-				setToggleMenu(false);
-				console.log(data);
-			} else {
-				console.log(data);
-				alert("An error occured !!");
-				setToggleMenu(false);
-			}
-		} catch (error) {
-			console.log(error);
-			alert("An error occured !");
-			setToggleMenu(false);
-		}
-	}
+export default function Menu({ setToggleDropdown, setToggleMenu, toggleMenu }) {
+	const navigate = useNavigate();
 	return (
 		<>
 			<button
@@ -47,43 +17,34 @@ export default function Menu({
 			</button>
 
 			<div
-				className={`Menu z-50 absolute top-full left-0 w-[371px] h-0 overflow-hidden bg-[#A59C82] rounded-lg shadow shadow-[#555] duration-300 
+				className={`Menu z-50 absolute top-full left-0 w-[371px] h-0 overflow-hidden duration-300 
 					delay-100 ease-in-out mt-2 mx-auto -ml-0.5
-					${toggleMenu === false ? "!h-0" : "!h-[120px]"}
+					${toggleMenu === false ? "!h-0" : "!h-[200px]"}
 					`}
 			>
-				{/* heading */}
-				<p className="text-[#766B57] text-center font-semibold my-4">
-					Add new item
-				</p>
-
-				{/* form */}
-				<form
-					action="#"
-					onSubmit={(e) => {
-						e.preventDefault();
-						handleItemAdd();
-					}}
-					className="flex justify-between mx-7"
+				<button
+					className="w-full h-[60px] bg-[#A59C82] bg-opacity-[98%] rounded-t-lg text-left
+					text-white px-5 disabled:text-opacity-50"
+					onClick={() => navigate("/about")}
 				>
-					{/* input */}
-					<input
-						type="text"
-						value={name}
-						placeholder="Item name"
-						onChange={(e) => setName(e.target.value)}
-						className="flex-1 px-4 mr-2 py-1 bg-[#766B57] text-white focus:outline-none rounded-full"
-					/>
+					About
+				</button>
 
-					{/* butn */}
-					<button
-						type="submit"
-						className="bg-[#766B57] px-4 text-white rounded-full hover:opacity-70 disabled:opacity-70"
-						disabled={name === ""}
-					>
-						Submit
-					</button>
-				</form>
+				<button
+					className="w-full h-[60px] bg-[#A59C82] bg-opacity-[98%] 
+					border-y border-[#766B57]
+					text-left text-white px-5 disabled:text-opacity-50"
+					onClick={() => navigate("/dummy")}
+				>
+					Dummy Page
+				</button>
+
+				<button
+					className="w-full h-[60px] bg-[#A59C82] bg-opacity-[98%] rounded-b-lg text-left text-white px-5 disabled:text-opacity-50 shadow-lg"
+					onClick={() => navigate("/dummy1")}
+				>
+					Dummy Page 1
+				</button>
 			</div>
 		</>
 	);

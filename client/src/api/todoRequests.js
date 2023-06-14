@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // main url for the backend server
-const mainUrl = "http://localhost:8080/api/v1/todo";
+const mainUrl = `${process.env.REACT_APP_BACKEND_API_URL}`;
 
 // get all to do items
 export const getCompleteList = async () => await axios.get(`${mainUrl}/all`);

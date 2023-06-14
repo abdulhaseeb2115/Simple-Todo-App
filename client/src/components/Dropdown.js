@@ -53,7 +53,7 @@ export default function Dropdown({
 			>
 				{/* today */}
 				<button
-					className="TodayTodo w-full h-[60px] bg-[#A59C82] bg-opacity-[98%]rounded-t-lg text-left text-white px-5 disabled:text-opacity-50"
+					className="TodayTodo w-full h-[60px] bg-[#A59C82] bg-opacity-[98%] rounded-t-lg text-left text-white px-5 disabled:text-opacity-50"
 					disabled={listType === 0}
 					onClick={() => handleListChange(0)}
 				>

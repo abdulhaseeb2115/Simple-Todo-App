@@ -88,7 +88,7 @@ export default function MainScreen() {
 					console.log(data);
 				} else {
 					console.log(data);
-					toast.error("An error occured !");
+					toast.error("Server Error");
 				}
 
 				setTimeout(() => {
@@ -96,7 +96,7 @@ export default function MainScreen() {
 				}, 700);
 			} catch (error) {
 				console.log(error);
-				toast.error("An error occured !");
+				toast.error("Server Error");
 
 				setTimeout(() => {
 					setIsLoading(false);
@@ -108,8 +108,10 @@ export default function MainScreen() {
 	}, []);
 
 	return (
-		<div className="MainScreen h-screen w-full overflow-y-scroll relative p-20">
+		<div className="MainScreen h-screen w-full overflow-y-scroll relative p-2">
 			<Components.Image />
+
+			<Components.AddItem refreshData={refreshData} />
 
 			<div className="Button relative w-[370px] h-[70px] bg-[#A59C82] bg-opacity-90 mt-5 rounded-lg border border-[#A59C82] flex mx-auto ">
 				<Components.Menu

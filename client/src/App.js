@@ -9,6 +9,11 @@ function App() {
 			<Toaster />
 			<Routes>
 				<Route path="/" element={<Screens.MainScreen />} />
+
+				<Route path="/about" element={<Screens.AboutScreen />} />
+
+				<Route path="/dummy" element={<Screens.DummyScreen />} />
+
 				<Route
 					path="*"
 					element={
