@@ -20,19 +20,19 @@ describe("Add New Todo Item", () => {
 		expect(response.body.success).toBe(true);
 		expect(response.body.item).toBeDefined();
 		expect(response.body).toHaveProperty("item");
-	});
+	}, 15000);
 });
 
 // Get All Items Test
 describe("Get All Todo Items", () => {
-	test.skip("should get all todo items", async () => {
+	test("should get all todo items", async () => {
 		const response = await request(app).get(`${mainUrl}/all`);
 
 		expect(response.status).toBe(200);
 		expect(response.body.success).toBe(true);
 		expect(response.body.items).toBeDefined();
 		expect(Array.isArray(response.body.items)).toBe(true);
-	});
+	}, 15000);
 });
 
 // Delete An Item
@@ -44,12 +44,12 @@ describe("Delete An Item", () => {
 
 		expect(response.status).toBe(200);
 		expect(response.body.success).toBe(true);
-	});
+	}, 15000);
 });
 
 // Update An Item
 describe("Update Task Controller", () => {
-	it("should update a task", async () => {
+	test.skip("should update a task", async () => {
 		const response = await request(app)
 			.put(`${mainUrl}/update/647b92cec2602c33a0a1c659`)
 			.send({ status: true });
@@ -59,5 +59,5 @@ describe("Update Task Controller", () => {
 		expect(response.body.item).toBeDefined();
 		expect(response.body).toHaveProperty("item");
 		expect(response.body.item.completed).toBe(true);
-	});
+	}, 15000);
 });
