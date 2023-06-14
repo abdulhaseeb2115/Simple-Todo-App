@@ -1,7 +1,7 @@
 # TODO App
 
 This repository contains a todo application built using React.js for the client-side and Node.js with Express.js for the server-side.
-[Deployed App](https://abh-todo.netlify.app/)
+- [Deployed App](https://abh-todo.netlify.app/)
 
 ## Folder Structure
 The repository is structured into two main folders:
