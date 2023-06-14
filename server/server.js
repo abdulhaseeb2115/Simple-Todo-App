@@ -1,5 +1,7 @@
 import app from "./app.js";
 import connectDB from "./config/database.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 ////// handle uncaught exceptions
 process.on("uncaughtException", (err) => {
@@ -9,18 +11,12 @@ process.on("uncaughtException", (err) => {
 });
 
 ////// DB Connection
-////// Server Connection
-// connectDB("mongodb://mongo-cntnr/Cowlar-Test");
-connectDB("mongodb://127.0.0.1/Cowlar-Test");
-export const server = app.listen(8080, () =>
-	console.log(`\n-> Server is running on http://localhost:8080`)
-);
+connectDB(process.env.MONGO_DB_URI);
 
-////// RUN THE APP ON LOCAL HOST WITHOUT DOCKER
-// connectDB(process.env.MONGO_DB_URI); // DB connection
-// const server = app.listen(process.env.PORT, () =>
-// 	console.log(`\n-> Server is running on http://localhost:${process.env.PORT}`)
-// ); // server
+////// Server Connection
+export const server = app.listen(process.env.PORT || 8080, () =>
+	console.log(`\n-> Server is running on port ${process.env.PORT}`)
+);
 
 ////// handle unhandeled promise rejection
 process.on("unhandledRejection", (err) => {

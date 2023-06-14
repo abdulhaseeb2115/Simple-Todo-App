@@ -17,6 +17,7 @@ export default function AddItem({ refreshData }) {
 				refreshData();
 				setName("");
 				console.log(data);
+				toast.success("New Task Added !");
 			} else {
 				console.log(data);
 				toast.error("An error occured !");

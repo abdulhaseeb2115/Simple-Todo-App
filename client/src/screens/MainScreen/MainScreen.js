@@ -61,14 +61,14 @@ export default function MainScreen() {
 
 			setTimeout(() => {
 				setIsLoading(false);
-			}, 700);
+			}, 1000);
 		} catch (error) {
 			console.log(error);
 			toast.error("An error occured !");
 
 			setTimeout(() => {
 				setIsLoading(false);
-			}, 700);
+			}, 1000);
 		}
 	}
 
@@ -93,14 +93,14 @@ export default function MainScreen() {
 
 				setTimeout(() => {
 					setIsLoading(false);
-				}, 700);
+				}, 1000);
 			} catch (error) {
 				console.log(error);
 				toast.error("Server Error");
 
 				setTimeout(() => {
 					setIsLoading(false);
-				}, 700);
+				}, 1000);
 			}
 		}
 
