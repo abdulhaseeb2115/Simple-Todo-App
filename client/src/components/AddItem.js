@@ -3,16 +3,17 @@ import * as api from "../api/todoRequests";
 import { toast } from "react-hot-toast";
 
 export default function AddItem({ refreshData }) {
-	const [name, setName] = useState([]); // filtered list
+	const [name, setName] = useState("");
 
 	// add item
 	async function handleItemAdd() {
-		if (name === "") {
+		if (name === "" || name?.trim() === "") {
+			toast.error("Invalid item name !");
 			return;
 		}
 
 		try {
-			const { data } = await api.addNewItem({ todo: name }); // data request
+			const { data } = await api.addNewItem({ todo: name?.trim() }); // data request
 			if (data?.success === true) {
 				refreshData();
 				setName("");
@@ -55,7 +56,7 @@ export default function AddItem({ refreshData }) {
 				<button
 					type="submit"
 					className="bg-[#766B57]  bg-opacity-60 px-2 text-white rounded hover:opacity-70 text-sm disabled:opacity-70"
-					disabled={name === ""}
+					disabled={name === "" || name?.trim() === ""}
 				>
 					Submit
 				</button>
